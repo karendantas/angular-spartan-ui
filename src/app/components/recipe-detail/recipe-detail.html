@@ -1,0 +1,77 @@
+@if (recipe(); as data) {
+  <div class="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <button
+      (click)="goBack.emit()"
+      class="mb-6 flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+    >
+      ← Voltar para a lista
+    </button>
+
+    <div class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
+      <div class="h-64 md:h-96 relative">
+        <img [src]="data.image" [alt]="data.title" class="w-full h-full object-cover" />
+
+        <!-- Estilização CSS Dinâmica ([ngClass]) baseada na dificuldade -->
+        <div class="absolute bottom-4 left-4">
+          <span
+            class="px-3.5 py-1.5 rounded-md text-sm font-bold shadow-sm"
+            [ngClass]="{
+              'bg-green-500 text-white dark:bg-green-600': data.difficulty === 'Fácil',
+              'bg-yellow-500 text-black dark:bg-yellow-600 dark:text-white':
+                data.difficulty === 'Médio',
+              'bg-red-500 text-white dark:bg-red-600': data.difficulty === 'Difícil',
+            }"
+          >
+            {{ data.difficulty }}
+          </span>
+        </div>
+      </div>
+
+      <div class="p-6 md:p-8">
+        <div
+          class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-8 border-b border-border pb-6"
+        >
+          <div>
+            <h2 class="text-3xl font-extrabold text-card-foreground tracking-tight">
+              {{ data.title }}
+            </h2>
+            <p class="text-muted-foreground mt-1">{{ data.category }}</p>
+          </div>
+
+          <!-- Uso do Pipe Customizado -->
+          <div
+            class="flex items-center gap-2 text-muted-foreground bg-secondary px-4 py-2 rounded-lg border border-border/50"
+          >
+            <span>⏱️</span>
+            <span class="font-medium">{{ data.prepTime | timeFormat }}</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-[1fr_2fr] gap-8">
+          <!-- Ingredientes -->
+          <div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">Ingredientes</h3>
+            <ul class="space-y-3">
+              @for (item of data.ingredients; track $index) {
+                <li class="flex items-start gap-2 text-foreground/80">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+                  {{ item }}
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Instruções -->
+          <div>
+            <h3 class="text-xl font-bold text-card-foreground mb-4">Modo de Preparo</h3>
+            <p
+              class="text-foreground/90 leading-relaxed whitespace-pre-line bg-secondary/30 p-5 rounded-xl border border-border/50"
+            >
+              {{ data.instructions }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

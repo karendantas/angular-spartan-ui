@@ -1,12 +1,26 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RecipeListComponent } from './components/recipe-list/recipe-list';
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail';
+import { Recipe } from './models/recipe';
+import { MOCK_RECIPES } from './data/recipes-mock';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RecipeListComponent, RecipeDetailComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('spartan-project');
+  // Estado Global do App
+  allRecipes = signal<Recipe[]>(MOCK_RECIPES);
+  selectedRecipe = signal<Recipe | null>(null);
+
+  onRecipeSelected(recipe: Recipe) {
+    this.selectedRecipe.set(recipe);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Sobe a página ao abrir a receita
+  }
+
+  clearSelection() {
+    this.selectedRecipe.set(null);
+  }
 }
