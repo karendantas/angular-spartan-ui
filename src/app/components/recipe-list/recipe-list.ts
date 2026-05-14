@@ -1,21 +1,19 @@
 import { Component, signal, computed, input, output } from '@angular/core';
 import { Recipe } from '../../models/recipe';
+import { RecipeCard } from '../recipe-card/recipe-card';
 
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
   templateUrl: './recipe-list.html',
+  imports: [RecipeCard]
 })
 export class RecipeListComponent {
-  // Input: Recebe a lista completa de receitas do componente pai
   recipes = input.required<Recipe[]>();
-  // Output: Avisa o componente pai quando uma receita é clicada
   selectRecipe = output<Recipe>();
 
-  // Signal para armazenar o texto da busca
   searchTerm = signal('');
 
-  // Signal computado: Refiltra a lista automaticamente sempre que 'searchTerm' ou 'recipes' mudarem
   filteredRecipes = computed(() => {
     const term = this.searchTerm().toLowerCase();
     return this.recipes().filter(

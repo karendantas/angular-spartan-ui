@@ -218,7 +218,7 @@ export const MOCK_RECIPES: Recipe[] = [
     instructions:
       'Cozinhe o macarrão al dente. Doure o peito de peru em cubos. Misture gemas com parmesão e pimenta. Combine tudo fora do fogo para não talhar. Versão mais leve do clássico italiano.',
     difficulty: 'Médio',
-    prepTime: 20,
+    prepTime: 125,
   },
   {
     id: 14,
@@ -304,4 +304,5 @@ export const MOCK_RECIPES: Recipe[] = [
     difficulty: 'Fácil',
     prepTime: 8,
   },
+
 ];

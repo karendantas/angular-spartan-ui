@@ -1,0 +1,24 @@
+<div
+  (click)="onCardClick()"
+  class="group cursor-pointer border border-border rounded-xl overflow-hidden bg-card hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md"
+>
+  <div class="relative h-48 overflow-hidden">
+    <img
+      [src]="recipe().image"
+      [alt]="recipe().title"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <span
+      class="absolute top-3 right-3 bg-background/90 backdrop-blur-sm text-foreground text-xs px-2.5 py-1 rounded-md font-semibold border border-border/50"
+    >
+      {{ recipe().category }}
+    </span>
+  </div>
+  <div class="p-5">
+    <h3
+      class="text-xl font-bold text-card-foreground group-hover:text-primary transition-colors"
+    >
+      {{ recipe().title }}
+    </h3>
+  </div>
+</div>

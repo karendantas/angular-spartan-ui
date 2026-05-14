@@ -1,6 +1,4 @@
-<!-- As classes bg-background e text-foreground garantem o funcionamento do tema claro/escuro -->
 <div class="min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
-  <!-- Cabeçalho Fixo -->
   <header
     class="sticky top-0 z-10 backdrop-blur-md bg-background/80 border-b border-border shadow-sm"
   >
@@ -12,9 +10,7 @@
     </div>
   </header>
 
-  <!-- Área de Conteúdo Central -->
   <main class="container mx-auto px-4 py-8 max-w-6xl">
-    <!-- Control Flow: Troca de telas sem precisar do Router -->
     @if (!selectedRecipe()) {
       <app-recipe-list [recipes]="allRecipes()" (selectRecipe)="onRecipeSelected($event)" />
     } @else {

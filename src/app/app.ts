@@ -17,7 +17,7 @@ export class App {
 
   onRecipeSelected(recipe: Recipe) {
     this.selectedRecipe.set(recipe);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Sobe a página ao abrir a receita
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   clearSelection() {
